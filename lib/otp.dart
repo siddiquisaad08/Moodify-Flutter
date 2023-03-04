@@ -1,8 +1,14 @@
 import 'package:MusicPlayer/home.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
-
-void main() => runApp(otpApp());
+import 'package:firebase_auth/firebase_auth.dart';
+final FirebaseAuth _auth = FirebaseAuth.instance;
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(otpApp());
+}
 
 class otpApp extends StatelessWidget {
   @override
@@ -15,11 +21,78 @@ class otpApp extends StatelessWidget {
 }
 
 class otpScreen extends StatefulWidget {
+
   @override
   _otpScreenState createState() => _otpScreenState();
 }
 class _otpScreenState extends State<otpScreen> {
+  late String _phoneNumber;
+  late String _verificationId;
   bool otpSent = false;
+  late int _resendToken;
+  bool _otpSent = false;
+
+  final _phoneNumberController = TextEditingController();
+  final _otpController = TextEditingController();
+
+  @override
+  void dispose() {
+    _phoneNumberController.dispose();
+    _otpController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _sendOtp() async {
+    _phoneNumber = _phoneNumberController.text.trim();
+    await _auth.verifyPhoneNumber(
+      phoneNumber: _phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await _auth.signInWithCredential(credential);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Home()),
+        );
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to verify phone number: ${e.message}'),
+          ),
+        );
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        _verificationId = verificationId;
+        _resendToken = resendToken!;
+        setState(() {
+          _otpSent = true;
+        });
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        _verificationId = verificationId;
+      },
+    );
+  }
+
+  Future<void> _verifyOtp() async {
+    String otp = _otpController.text.trim();
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+      verificationId: _verificationId,
+      smsCode: otp,
+    );
+    try {
+      await _auth.signInWithCredential(credential);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Invalid OTP. Please try again.'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +127,7 @@ class _otpScreenState extends State<otpScreen> {
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
+                        controller: _phoneNumberController,
                         keyboardType: TextInputType.number,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
@@ -72,11 +146,35 @@ class _otpScreenState extends State<otpScreen> {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      otpSent = true;
-                    });
-                    // add code to send OTP here
+                  onPressed: () async {
+                    // Get the phone number from the text field
+                    String phoneNumber = _phoneNumberController.text.trim();
+
+                    // Send the OTP to the user's phone
+                    await FirebaseAuth.instance.verifyPhoneNumber(
+                      phoneNumber: phoneNumber,
+                      verificationCompleted: (PhoneAuthCredential credential) async {
+                        // Auto-retrieve the verification code and sign the user in
+                        await FirebaseAuth.instance.signInWithCredential(credential);
+                      },
+                      verificationFailed: (FirebaseAuthException e) {
+                        // Handle verification failure
+                        print(e.message);
+                      },
+                        codeSent: (String verificationId, int? resendToken) {
+                          // Save the verification ID and resend token
+                          _verificationId = verificationId;
+                          _resendToken = resendToken!;
+                          // Set the OTP sent flag to true
+                          setState(() {
+                            _otpSent = true;
+                          });
+                        },
+                    codeAutoRetrievalTimeout: (String verificationId) {
+                        // Handle code auto-retrieval timeout
+                        _verificationId = verificationId;
+                      },
+                    );
                   },
                   child: Text('Send OTP'),
                   style: ElevatedButton.styleFrom(
@@ -120,14 +218,29 @@ class _otpScreenState extends State<otpScreen> {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ),
+                  onPressed: () async {
+                    // Get the entered OTP from the text field
+                    String otp = _otpController.text.trim();
+
+                    // Create a PhoneAuthCredential with the verification ID and entered OTP
+                    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                      verificationId: _verificationId,
+                      smsCode: otp,
                     );
+
+                    // Sign in the user with the credential
+                    try {
+                      await FirebaseAuth.instance.signInWithCredential(credential);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      );
+                    } on FirebaseAuthException catch (e) {
+                      // Handle sign-in failure
+                      print(e.message);
+                    }
                   },
+
                   child: Text('Submit'),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF210055),

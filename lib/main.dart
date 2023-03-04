@@ -1,5 +1,5 @@
 import 'dart:async';
-// import 'package:MusicPlayer/firebase_options.dart';
+import 'package:MusicPlayer/firebase_options.dart';
 
 // import 'manual.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +8,8 @@ import 'account.dart';
 // import 'login.dart';
 import 'routes.dart';
 void main() {
-  // Widgets.FlutterBinding.ensureInitialized();
-  // Fireb ase.initializedApp(options: DefaultFirebaseOptions.currentPlatform)
+  WidgetsFlutterBinding.ensureInitialized();
+  // Firebase.initializedApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationRepository()));
   runApp(MyApp());
 }
 
