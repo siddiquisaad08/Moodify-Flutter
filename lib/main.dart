@@ -1,11 +1,15 @@
 import 'dart:async';
-import 'manual.dart';
+// import 'package:MusicPlayer/firebase_options.dart';
+
+// import 'manual.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'account.dart';
-import 'login.dart';
+// import 'login.dart';
 import 'routes.dart';
 void main() {
+  // Widgets.FlutterBinding.ensureInitialized();
+  // Fireb ase.initializedApp(options: DefaultFirebaseOptions.currentPlatform)
   runApp(MyApp());
 }
 
