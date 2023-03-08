@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "166240270671",
+    "project_id": "emotion-based-music-play-f2106",
+    "storage_bucket": "emotion-based-music-play-f2106.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166240270671:android:36a9493bf75a66719aed3a",
+        "android_client_info": {
+          "package_name": "com.example.MusicPlayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166240270671-hf039n32kut55ku8qq4ahnctmpd18628.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.MusicPlayer",
+            "certificate_hash": "a3514cc8b08b42805628f9f74018103d5342903d"
+          }
+        },
+        {
+          "client_id": "166240270671-1ogkpp9qr4emetm137ep62f6gaqkdmg2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe7s_ebnwfSuYI7Hu4DcyyyTGH4fAI1ZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166240270671-1ogkpp9qr4emetm137ep62f6gaqkdmg2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "166240270671-u70kqb8l1el0u5ojqm3ua0epmn72llrm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.MusicPlayer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>166240270671-u70kqb8l1el0u5ojqm3ua0epmn72llrm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.166240270671-u70kqb8l1el0u5ojqm3ua0epmn72llrm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCX3BsH8tw5cw7srtSJlbxx_fV7UVUQlSE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>166240270671</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.MusicPlayer</string>
+	<key>PROJECT_ID</key>
+	<string>emotion-based-music-play-f2106</string>
+	<key>STORAGE_BUCKET</key>
+	<string>emotion-based-music-play-f2106.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:166240270671:ios:e07fefee8001ef679aed3a</string>
+</dict>
+</plist>
