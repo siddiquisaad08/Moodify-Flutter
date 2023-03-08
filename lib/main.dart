@@ -1,15 +1,17 @@
 import 'dart:async';
-import 'package:MusicPlayer/firebase_options.dart';
 
 // import 'manual.dart';
 import 'package:flutter/material.dart';
+
+import 'package:MusicPlayer/account/account.dart';
 // import 'package:flutter/services.dart';
-import 'account.dart';
 // import 'login.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'routes.dart';
-void main() {
+
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase.initializedApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'My App',
       home: SplashPage(),
       routes: {
-        AppRoutes.account: (context) => account(),
+        AppRoutes.account: (context) => Account(),
       },
     );
   }
