@@ -117,6 +117,8 @@ class _pwdScreenState extends State<pwdScreen> {
                       // print(password);
                       try {
                         final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                        User user = newUser.user;
+                        user.updateDisplayName(name);
                         if (newUser != null){
                           Navigator.push(
                             context,

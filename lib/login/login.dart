@@ -104,6 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     try {
                       final user = await _auth.signInWithEmailAndPassword(email: email, password: pass);
                       if (user != null){
+                        final snackBar = SnackBar(
+                          content: Text('Login Successful'),
+                          backgroundColor: Colors.green,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -111,8 +116,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
                       }
-                    } catch (e){
-                      print(e);
+                    }
+                    catch (e){
+                      final snackBar = SnackBar(
+                        content: Text('An error occurred: $e'),
+                        backgroundColor: Colors.red,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
                   },
                   child: Text('Login'),

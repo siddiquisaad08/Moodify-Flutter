@@ -11,7 +11,7 @@ dependencies:
   flutterfire:
   flutter:
     sdk: flutter
-  #  camera: ^0.9.4
+#  camera: ^0.9.4
   firebase_core: ^1.12.0
   firebase_auth: ^2.0.0
 
