@@ -1,6 +1,8 @@
-
-import 'package:MusicPlayer/Home/home.dart';
+import 'package:MusicPlayer/phone/otpsubmit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:MusicPlayer/Home/home.dart';
+import 'package:MusicPlayer/phone/otpsubmit.dart';
 
 void main() => runApp(otpApp());
 
@@ -21,6 +23,30 @@ class otpScreen extends StatefulWidget {
 
 class _otpScreenState extends State<otpScreen> {
   bool otpSent = false;
+  final _phoneController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
+  String _verificationId = "";
+
+  void _sendOTP() async {
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: _phoneController.text,
+        codeSent: (String verificationId, int resendToken) {
+          // Save the verification ID so that it can be used in the next screen
+          setState(() {
+            _verificationId = verificationId;
+            otpSent = true;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Handle auto retrieval timeout
+        },
+        timeout: Duration(seconds: 60),
+      );
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +81,8 @@ class _otpScreenState extends State<otpScreen> {
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
-                        keyboardType: TextInputType.number,
+                        controller: _phoneController,
+                        keyboardType: TextInputType.phone,
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -72,63 +99,16 @@ class _otpScreenState extends State<otpScreen> {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      otpSent = true;
-                    });
-                    // add code to send OTP here
-                  },
-                  child: Text('Send OTP'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF210055),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  'OTP',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                child: TextFormField(
-                  enabled: otpSent,
-                  obscureText: true,
-                  keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your OTP',
-                    hintStyle: TextStyle(color: Colors.white70),
-                    filled: true,
-                    fillColor: Colors.transparent,
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
-              SizedBox(
-                width: 200,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
+                  onPressed: () async {
+                    _sendOTP();
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Home(),
+                        builder: (context) => otpSubmit(),
                       ),
                     );
                   },
-                  child: Text('Submit'),
+                  child: Text('Send OTP'),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF210055),
                     shape: RoundedRectangleBorder(

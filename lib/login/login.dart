@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           backgroundColor: Colors.green,
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        Navigator.pushReplacement(
+                        await Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Home(),
