@@ -4,7 +4,8 @@ import 'songlist/sad.dart';
 import 'songlist/neutral.dart';
 import 'songlist/angry.dart';
 import 'songlist/surprise.dart';
-
+import 'package:MusicPlayer/Home/youtube/screens/home_screen.dart';
+List<String> emotion = ['happiness','sadness', 'neutral', 'anger', 'surprise'];
 void main() {
   runApp(manual());
 }
@@ -21,17 +22,16 @@ class manual extends StatelessWidget {
   final List<Function(BuildContext)> functions = [
         (BuildContext context) {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HSongList(),
-            ),
-          ); // Navigate to a new screen when this button is pressed // Replace this with your own functionality
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen2(emotion[0]),
+              ),
+          );// Navigate to a new screen when this button is pressed // Replace this with your own functionality
     },
         (BuildContext context) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NSongList(),
+              builder: (context) => HomeScreen2(emotion[2]),
             ),
           ); // Replace this with your own functionality
     },
@@ -39,7 +39,7 @@ class manual extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SaSongList(),
+              builder: (context) => HomeScreen2(emotion[1]),
             ),
           );
     },
@@ -47,7 +47,7 @@ class manual extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ASongList(),
+              builder: (context) => HomeScreen2(emotion[3]),
             ),
           ); // Replace this with your own functionality
     },
@@ -55,11 +55,11 @@ class manual extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SuSongList(),
+              builder: (context) => HomeScreen2(emotion[4]),
             ),
           ); // Replace this with your own functionality
     },
-  ]; // list of functions to be assigned to each emoji button
+  ];
 
   @override
   Widget build(BuildContext context) {
