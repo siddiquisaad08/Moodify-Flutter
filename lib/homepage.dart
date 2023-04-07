@@ -43,21 +43,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<http.Response> getEmotion(File image) async {
-    Uri url = Uri.parse(
-        'https://centralindia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion'
-    );
-
     File compressedImage = await testCompressAndGetFile(
         image, image.parent.absolute.path + '/temp.jpg');
 
-    return await http.post(
-      url,
-      headers: <String, String>{
-        'Content-Type': 'application/octet-stream',
-        'Ocp-Apim-Subscription-Key': kAzureApiKey,
-      },
-      body: compressedImage.readAsBytesSync(),
-    );
+    return await http.post
+        (
+      Uri.parse("https://centralindia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion'"),
+        headers: <String, String>{
+          'Content-Type': 'application/octet-stream',
+          'Ocp-Apim-Subscription-Key': kAzureApiKey,
+        },
+        body: compressedImage.
+        readAsBytesSync
+          (),
+      );
   }
 
   void getData() async {

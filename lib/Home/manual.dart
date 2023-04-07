@@ -66,8 +66,15 @@ class manual extends StatelessWidget {
     return MaterialApp(
       title: 'Emoji Grid',
       home: Scaffold(
-        backgroundColor: Color(0xff210055), // set background color
-        body: GridView.builder(
+        body: Container(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+        colors: [Color(0xFF253D70), Color(0xFF181059)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    ),
+    ),
+        child: GridView.builder(
           padding: EdgeInsets.all(20),
           itemCount: emojis.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -98,6 +105,7 @@ class manual extends StatelessWidget {
           },
         ),
       ),
+    )
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'manual.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 void main() => runApp(Home());
 
 class Home extends StatelessWidget {
@@ -26,10 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   User loggedInUser;
   @override
-  void initState(){
+  void initState() {
     super.initState();
     getCurrentUser();
   }
+
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser;
@@ -37,15 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
         loggedInUser = user;
         print(loggedInUser.displayName);
       }
-    } catch(e){
+    } catch (e) {
       print(e);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF210055),
-      appBar: AppBar(
+        body: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF253D70), Color(0xFF181059)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text('Welcome ${loggedInUser?.email ?? "Guest"}!'),
@@ -68,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //   ),
         // ),
       ),
-      body: GridView.count(
+      child: GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
@@ -132,6 +142,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
+    ));
   }
 }

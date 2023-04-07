@@ -35,13 +35,24 @@ class _pwdScreenState extends State<pwdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF210055),
-      body: Center(
+        body: Container(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+        colors: [Color(0xFF253D70), Color(0xFF181059)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    ),
+    ),
+      child: Center(
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          height: MediaQuery.of(context).size.width * 1.0,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
-            color: Color(0xFF421d6f),
+            gradient: LinearGradient(
+              colors: [Color(0xFF021D7C), Color(0xFF000000)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -165,6 +176,7 @@ class _pwdScreenState extends State<pwdScreen> {
           ),
         ),
       ),
+    )
     );
   }
 }

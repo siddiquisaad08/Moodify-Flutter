@@ -1,2 +1,2 @@
-final String kAzureApiKey = 'f499ed86b35e4da8958a17ffa12d2d45';
+final String kAzureApiKey = '50f864a3a9544b0a9a4feb5561e32100';
 final String kYoutubeApiKey = 'AIzaSyAXQTLLIzmXB8zi2jr5Rv0oyGQxsIbJPec';

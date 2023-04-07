@@ -1,21 +1,65 @@
 import 'package:MusicPlayer/Home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-void main() => runApp(LoginApp());
+import'package:firebase_auth/firebase_auth.dart';
 
-class LoginApp extends StatelessWidget {
+void
+
+main
+    () =>
+    runApp
+      (
+        LoginApp
+          ());
+
+class
+
+LoginApp
+
+    extends
+
+    StatelessWidget
+{
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login',
-      home: LoginScreen(),
-    );
+
+  Widget
+  build
+      (BuildContext context) {
+
+    return
+
+      MaterialApp
+        (
+
+        title
+            :
+        'Login'
+        ,
+
+        home
+            :
+        LoginScreen
+          (),
+      );
   }
 }
 
-class LoginScreen extends StatefulWidget {
+class
+
+LoginScreen
+
+    extends
+
+    StatefulWidget
+{
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+
+  _LoginScreenState
+  createState
+      () =>
+      _LoginScreenState
+        ();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -25,13 +69,24 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF210055),
-      body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          height: MediaQuery.of(context).size.width * 0.8,
+        body: Container(
           decoration: BoxDecoration(
-            color: Color(0xFF421d6f),
+            gradient: LinearGradient(
+              colors: [Color(0xFF253D70), Color(0xFF181059)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+      child: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.width * 0.9,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF021D7C), Color(0xFF000000)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -138,6 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    ),
     );
   }
 }
