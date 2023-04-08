@@ -28,7 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
         body: Container(
         decoration: BoxDecoration(
         gradient: LinearGradient(
-        colors: [Color(0xFF253D70), Color(0xFF181059)],
+          colors: [Color(0xFF021D7C), Color(0xFF000000)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     ),
@@ -39,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
           height: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF021D7C), Color(0xFF000000)],
+              colors: [Color(0xFF253D70), Color(0xFF181059)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -109,7 +109,8 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               SizedBox(height: 30),
               SizedBox(
-                width: 100,
+                width: 200,
+                height: 45,
                 child: ElevatedButton(
                   onPressed: () {
                   // _auth.createUserWithEmailAndPassword(email: email, password: pass)
@@ -124,7 +125,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF210055),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ),

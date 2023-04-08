@@ -50,34 +50,34 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF253D70), Color(0xFF181059)],
+          colors: [Color(0xFF021D7C), Color(0xFF000000)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
-      child: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text('Welcome ${loggedInUser?.email ?? "Guest"}!'),
-        // title: Container(
-        //   padding: EdgeInsets.symmetric(horizontal: 10),
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(10),
-        //     color: Colors.white.withOpacity(0.3),
-        //   ),
-        //   child: TextField(
-        //     decoration: InputDecoration(
-        //       border: InputBorder.none,
-        //       hintText: 'Search',
-        //       hintStyle: TextStyle(color: Colors.white),
-        //       icon: Icon(
-        //         Icons.search,
-        //         color: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        // ),
-      ),
+      // child: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   title: Text('Welcome ${loggedInUser?.email ?? "Guest"}!'),
+      //   // title: Container(
+      //   //   padding: EdgeInsets.symmetric(horizontal: 10),
+      //   //   decoration: BoxDecoration(
+      //   //     borderRadius: BorderRadius.circular(10),
+      //   //     color: Colors.white.withOpacity(0.3),
+      //   //   ),
+      //   //   child: TextField(
+      //   //     decoration: InputDecoration(
+      //   //       border: InputBorder.none,
+      //   //       hintText: 'Search',
+      //   //       hintStyle: TextStyle(color: Colors.white),
+      //   //       icon: Icon(
+      //   //         Icons.search,
+      //   //         color: Colors.white,
+      //   //       ),
+      //   //     ),
+      //   //   ),
+      //   // ),
+      // ),
       child: GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 20,
@@ -142,6 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    ));
+    )
+    );
   }
 }

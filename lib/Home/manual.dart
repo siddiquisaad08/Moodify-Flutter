@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'songlist/happy.dart';
-import 'songlist/sad.dart';
-import 'songlist/neutral.dart';
-import 'songlist/angry.dart';
-import 'songlist/surprise.dart';
 import 'package:MusicPlayer/Home/youtube/screens/home_screen.dart';
 List<String> emotion = ['happiness','sadness', 'neutral', 'anger', 'surprise'];
 void main() {
@@ -69,7 +64,7 @@ class manual extends StatelessWidget {
         body: Container(
         decoration: BoxDecoration(
         gradient: LinearGradient(
-        colors: [Color(0xFF253D70), Color(0xFF181059)],
+          colors: [Color(0xFF021D7C), Color(0xFF000000)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     ),

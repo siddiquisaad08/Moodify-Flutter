@@ -18,7 +18,7 @@ class Account extends StatelessWidget {
           body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF253D70), Color(0xFF181059)],
+                colors: [Color(0xFF021D7C), Color(0xFF000000)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -56,10 +56,10 @@ class Account extends StatelessWidget {
                         child: Container(
                           color: const Color(0xFF421d6f),
                           constraints: BoxConstraints(
-                            maxWidth: constraints.maxWidth * 0.8,
-                            maxHeight: constraints.maxWidth * 0.8,
-                            minHeight: constraints.maxWidth * 0.8,
-                            minWidth: constraints.maxWidth * 0.8,
+                            maxWidth: constraints.maxWidth * 0.9,
+                            maxHeight: constraints.maxWidth * 0.9,
+                            minHeight: constraints.maxWidth * 0.9,
+                            minWidth: constraints.maxWidth * 0.9,
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +79,7 @@ class Account extends StatelessWidget {
                                   child: const Text('Sign-up Free'),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(300),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     primary: const Color(0xFF210055),
                                   ),
@@ -102,7 +102,7 @@ class Account extends StatelessWidget {
                                       const Text('Continue with Phone number'),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     primary: const Color(0xFF210055),
                                   ),
@@ -124,7 +124,7 @@ class Account extends StatelessWidget {
                                   child: const Text('Log in'),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     primary: const Color(0xFF210055),
                                   ),
