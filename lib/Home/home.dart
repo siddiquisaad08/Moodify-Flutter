@@ -1,6 +1,4 @@
 import 'package:MusicPlayer/homepage.dart';
-
-import 'song.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'manual.dart';
@@ -47,6 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF3660DC),
+          elevation: 0,
+          title: Text('Welcome ${loggedInUser?.displayName ?? "Guest"}!'),
+        ),
         body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -55,29 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           end: Alignment.bottomRight,
         ),
       ),
-      // child: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   title: Text('Welcome ${loggedInUser?.email ?? "Guest"}!'),
-      //   // title: Container(
-      //   //   padding: EdgeInsets.symmetric(horizontal: 10),
-      //   //   decoration: BoxDecoration(
-      //   //     borderRadius: BorderRadius.circular(10),
-      //   //     color: Colors.white.withOpacity(0.3),
-      //   //   ),
-      //   //   child: TextField(
-      //   //     decoration: InputDecoration(
-      //   //       border: InputBorder.none,
-      //   //       hintText: 'Search',
-      //   //       hintStyle: TextStyle(color: Colors.white),
-      //   //       icon: Icon(
-      //   //         Icons.search,
-      //   //         color: Colors.white,
-      //   //       ),
-      //   //     ),
-      //   //   ),
-      //   // ),
-      // ),
+
       child: GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 20,

@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:MusicPlayer/Home/youtube/screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 List<String> emotion = ['happiness','sadness', 'neutral', 'anger', 'surprise'];
 void main() {
   runApp(manual());
 }
 
-class manual extends StatelessWidget {
+class manual extends StatefulWidget {
+  @override
+  State<manual> createState() => _manualState();
+}
+
+class _manualState extends State<manual> {
   final List<String> emojis = [
     '😀',
     '🙂',
     '😭',
     '😤',
     '😲'
-  ]; // list of emojis to display
-
+  ];
+ // list of emojis to display
   final List<Function(BuildContext)> functions = [
         (BuildContext context) {
           Navigator.push(
@@ -55,12 +61,36 @@ class manual extends StatelessWidget {
           ); // Replace this with your own functionality
     },
   ];
+  final _auth = FirebaseAuth.instance;
+
+  User loggedInUser;
+
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.displayName);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Emoji Grid',
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF3660DC),
+          elevation: 0,
+          title: Text('Welcome ${loggedInUser?.displayName ?? "Guest"}!'),
+        ),
         body: Container(
         decoration: BoxDecoration(
         gradient: LinearGradient(
