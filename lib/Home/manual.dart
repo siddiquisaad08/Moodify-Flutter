@@ -89,7 +89,7 @@ class _manualState extends State<manual> {
           appBar: AppBar(
             backgroundColor: Color(0xFF3660DC),
             elevation: 0,
-            title: Text(' ${loggedInUser?.displayName ?? "Guest"} How do you feel!'),
+            title: Text('Welcome ${loggedInUser?.displayName ?? "Guest"}!'),
           ),
           body: Container(
             decoration: BoxDecoration(
