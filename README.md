@@ -1,7 +1,6 @@
-# MusicPlayer
+# Moodify
 
-A new Flutter project.
-
+A new Flutter project namely Moodify which plays the songs according to the user's emotion 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
