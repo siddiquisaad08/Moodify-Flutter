@@ -7,8 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:MusicPlayer/Home/youtube/screens/home_screen.dart';
-import 'package:MusicPlayer/Home/utilities/key.dart';
+import 'package:Moodify/Home/youtube/screens/home_screen.dart';
+import 'package:Moodify/Home/utilities/key.dart';
 
 class HomePage extends StatefulWidget {
   @override

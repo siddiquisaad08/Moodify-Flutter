@@ -1,5 +1,5 @@
 import 'video_model.dart';
-import 'package:MusicPlayer/Home/utilities/playlistID.dart';
+import 'package:Moodify/Home/utilities/playlistID.dart';
 
 class Channel {
 

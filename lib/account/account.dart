@@ -1,8 +1,8 @@
-import 'package:MusicPlayer/phone/otp.dart';
+import 'package:Moodify/phone/otp.dart';
 import 'package:flutter/material.dart';
 
-import 'package:MusicPlayer/login//login.dart';
-import 'package:MusicPlayer/signup//signup.dart';
+import 'package:Moodify/login//login.dart';
+import 'package:Moodify/signup//signup.dart';
 
 void main() => runApp(Account());
 

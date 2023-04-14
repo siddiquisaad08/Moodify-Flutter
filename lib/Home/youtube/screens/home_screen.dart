@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:MusicPlayer/Home/youtube/models/channel_model.dart';
-import 'package:MusicPlayer/Home/youtube/models/video_model.dart';
-import 'package:MusicPlayer/Home/youtube/screens/video_screen.dart';
-import 'package:MusicPlayer/Home/youtube/services/api_service.dart';
+import 'package:Moodify/Home/youtube/models/channel_model.dart';
+import 'package:Moodify/Home/youtube/models/video_model.dart';
+import 'package:Moodify/Home/youtube/screens/video_screen.dart';
+import 'package:Moodify/Home/youtube/services/api_service.dart';
 
 class HomeScreen2 extends StatefulWidget {
   final String emotion;

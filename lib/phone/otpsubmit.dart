@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:MusicPlayer/Home/home.dart';
+import 'package:Moodify/Home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'otp.dart';
 

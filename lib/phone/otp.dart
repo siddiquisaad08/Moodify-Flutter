@@ -1,8 +1,8 @@
-import 'package:MusicPlayer/phone/otpsubmit.dart';
+import 'package:Moodify/phone/otpsubmit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:MusicPlayer/Home/home.dart';
-import 'package:MusicPlayer/phone/otpsubmit.dart';
+import 'package:Moodify/Home/home.dart';
+import 'package:Moodify/phone/otpsubmit.dart';
 
 void main() => runApp(otpApp());
 
