@@ -6,7 +6,7 @@ import 'package:Moodify/Home/utilities/key.dart';
 import 'package:Moodify/Home/utilities/playlistID.dart';
 import 'package:http/http.dart' as http;
 class APIService {
-  String emotion;
+  late String emotion;
   APIService(this.emotion);
   APIService._instantiate();
   static final APIService instance = APIService._instantiate();
@@ -14,7 +14,7 @@ class APIService {
   final String _baseUrl = 'www.googleapis.com';
   String _nextPageToken = '';
 
-  Future<Channel> fetchChannel({String channelId}) async {
+  Future<Channel> fetchChannel({required String channelId}) async {
     Map<String, String> parameters = {
       'part': 'snippet, contentDetails, statistics',
       'id': channelId,
@@ -39,7 +39,7 @@ class APIService {
       // Fetch first batch of videos from uploads playlist
       channel.videos = await fetchVideosFromPlaylist(
         playlistId: playlistId[emotion],
-      //playlistId: channel.uploadPlaylistId,
+        //playlistId: channel.uploadPlaylistId,
       );
       return channel;
     } else {
@@ -47,8 +47,8 @@ class APIService {
     }
   }
 
-  Future<List<Video>> fetchVideosFromPlaylist({String playlistId}) async {
-    Map<String, String> parameters = {
+  Future<List<Video>> fetchVideosFromPlaylist({required String? playlistId}) async {
+    Map<String, String?> parameters = {
       'part': 'snippet',
       'playlistId': playlistId,
       'maxResults': '50',
@@ -75,7 +75,7 @@ class APIService {
       // Fetch first eight videos from uploads playlist
       List<Video> videos = [];
       videosJson.forEach(
-        (json) => videos.add(
+            (json) => videos.add(
           Video.fromMap(json['snippet']),
         ),
       );

@@ -5,7 +5,7 @@ class VideoScreen extends StatefulWidget {
 
   final String id;
 
-  VideoScreen({this.id});
+  VideoScreen({required this.id});
 
   @override
   _VideoScreenState createState() => _VideoScreenState();
@@ -13,7 +13,7 @@ class VideoScreen extends StatefulWidget {
 
 class _VideoScreenState extends State<VideoScreen> {
 
-  YoutubePlayerController _controller;
+  late YoutubePlayerController _controller;
   bool _isLiked = false;
   bool _isDisliked = false;
 

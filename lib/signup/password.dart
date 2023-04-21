@@ -26,8 +26,8 @@ class pwdScreen extends StatefulWidget {
 
 class _pwdScreenState extends State<pwdScreen> {
   final _auth = FirebaseAuth.instance;
-  String password;
-  String confirmPassword;
+  late String password;
+  late String confirmPassword;
 
   bool passwordsMatch() {
     return password == confirmPassword;
@@ -129,8 +129,8 @@ class _pwdScreenState extends State<pwdScreen> {
                       // print(password);
                       try {
                         final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-                        User user = newUser.user;
-                        user.updateDisplayName(name);
+                        User? user = newUser.user;
+                        user!.updateDisplayName(name);
                         if (newUser != null){
                           Navigator.push(
                             context,

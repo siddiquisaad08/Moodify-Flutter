@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login',
+      title: 'Home',
       home: HomeScreen(),
     );
   }
@@ -24,7 +24,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
-  User loggedInUser;
+  late User loggedInUser;
+  int _selectedIndex = 0;
+  static List<Widget> _widgetOptions = <Widget>[
+    Image.asset("images/emotion.jpg"),
+    detect(),
+    manual(),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -43,88 +50,52 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFF3660DC),
-          elevation: 0,
-          title: Text('Welcome ${loggedInUser?.displayName ?? "Guest"}!'),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF3660DC),
+        elevation: 0,
+        title: Text('Welcome ${loggedInUser.displayName ?? "Guest"}!'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF021D7C), Color(0xFF000000)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF021D7C), Color(0xFF000000)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+        child: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF3660DC),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-
-          child: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            children: [
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                elevation: 0,
-                color: Colors.transparent,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => detect(),
-                      ),
-                    );
-                  },
-                  child: Icon(Icons.add_a_photo),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    side: BorderSide(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                elevation: 0,
-                color: Colors.transparent,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => manual(),
-                      ),
-                    );
-                  },
-                  child: Icon(Icons.emoji_emotions_outlined),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    side: BorderSide(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_a_photo),
+            label: 'Detect',
           ),
-        )
+          BottomNavigationBarItem(
+            icon: Icon(Icons.emoji_emotions_outlined),
+            label: 'Manual',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }

@@ -12,13 +12,13 @@ class Channel {
   List<Video> videos;
 
   Channel({
-    this.id,
-    this.title,
-    this.profilePictureUrl,
-    this.subscriberCount,
-    this.videoCount,
-    this.uploadPlaylistId,
-    this.videos,
+    required this.id,
+    required this.title,
+    required this.profilePictureUrl,
+    required this.subscriberCount,
+    required this.videoCount,
+    required this.uploadPlaylistId,
+    required this.videos,
   });
 
   factory Channel.fromMap(Map<String, dynamic> map) {
@@ -28,8 +28,8 @@ class Channel {
       profilePictureUrl: map['snippet']['thumbnails']['default']['url'],
       subscriberCount: map['statistics']['subscriberCount'],
       //videoCount: map['statistics']['videoCount'],
-      videoCount: playlistId['anger'].length,
-      uploadPlaylistId: map['contentDetails']['relatedPlaylists']['uploads'],
+      videoCount: playlistId['anger']!.length,
+      uploadPlaylistId: map['contentDetails']['relatedPlaylists']['uploads'], videos: [],
       //uploadPlaylistId: playlistId['happiness'],
     );
   }

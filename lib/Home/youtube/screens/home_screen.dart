@@ -12,7 +12,7 @@ class HomeScreen2 extends StatefulWidget {
 }
 
 class _HomeScreen2State extends State<HomeScreen2> {
-  Channel _channel;
+  late Channel _channel;
   bool _isLoading = false;
 
   @override

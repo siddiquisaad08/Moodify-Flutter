@@ -63,7 +63,7 @@ class _manualState extends State<manual> {
   ];
   final _auth = FirebaseAuth.instance;
 
-  User loggedInUser;
+  late User loggedInUser;
 
   void initState() {
     super.initState();
@@ -86,11 +86,6 @@ class _manualState extends State<manual> {
     return MaterialApp(
         title: 'Emoji Grid',
         home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Color(0xFF3660DC),
-            elevation: 0,
-            title: Text('Welcome ${loggedInUser?.displayName ?? "Guest"}!'),
-          ),
           body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(

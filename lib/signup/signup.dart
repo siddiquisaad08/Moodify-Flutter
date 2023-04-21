@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'password.dart';
-String name;
-String email;
+late String name;
+late String email;
 void main() => runApp(SignUp());
 
 class SignUp extends StatelessWidget {

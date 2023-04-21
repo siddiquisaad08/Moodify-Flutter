@@ -31,17 +31,17 @@ class _otpScreenState extends State<otpScreen> {
     try {
       await _auth.verifyPhoneNumber(
         phoneNumber: _phoneController.text,
-        codeSent: (String verificationId, int resendToken) {
+        codeSent: (String? verificationId, int? resendToken) {
           // Save the verification ID so that it can be used in the next screen
           setState(() {
-            _verificationId = verificationId;
+            _verificationId = verificationId!;
             otpSent = true;
           });
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           // Handle auto retrieval timeout
         },
-        timeout: Duration(seconds: 60),
+        timeout: Duration(seconds: 60), verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {  }, verificationFailed: (FirebaseAuthException error) {  },
       );
     } catch (e) {
       print(e.toString());
