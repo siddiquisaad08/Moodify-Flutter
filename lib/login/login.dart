@@ -8,6 +8,7 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Login',
       home: LoginScreen(),
     );
@@ -118,11 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         final user = await _auth.signInWithEmailAndPassword(
                             email: email, password: pass);
                         if (user != null) {
-                          final snackBar = SnackBar(
-                            content: Text('Login Successful'),
-                            backgroundColor: Colors.green,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           await Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

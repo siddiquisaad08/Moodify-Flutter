@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Moodify/Home/youtube/screens/home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-List<String> emotion = ['happiness','sadness', 'neutral', 'anger', 'surprise'];
+
+List<String> emotion = ['Happy', 'Neutral', 'Sad', 'Angry', 'Surprise'];
 void main() {
   runApp(manual());
 }
@@ -12,27 +12,22 @@ class manual extends StatefulWidget {
 }
 
 class _manualState extends State<manual> {
-  final List<String> emojis = [
-    '😀',
-    '🙂',
-    '😭',
-    '😤',
-    '😲'
-  ];
+  final List<String> emojis = ['😀', '🙂', '😭', '😤', '😲'];
   // list of emojis to display
   final List<Function(BuildContext)> functions = [
         (BuildContext context) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen2(emotion[0]),
+        MaterialPageRoute(
+          builder: (context) => HomeScreen2(emotion[0]),
         ),
-      );// Navigate to a new screen when this button is pressed // Replace this with your own functionality
+      ); // Navigate to a new screen when this button is pressed // Replace this with your own functionality
     },
         (BuildContext context) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen2(emotion[2]),
+          builder: (context) => HomeScreen2(emotion[1]),
         ),
       ); // Replace this with your own functionality
     },
@@ -40,7 +35,7 @@ class _manualState extends State<manual> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen2(emotion[1]),
+          builder: (context) => HomeScreen2(emotion[2]),
         ),
       );
     },
@@ -61,31 +56,18 @@ class _manualState extends State<manual> {
       ); // Replace this with your own functionality
     },
   ];
-  final _auth = FirebaseAuth.instance;
-
-  late User loggedInUser;
-
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-        print(loggedInUser.displayName);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Emoji Grid',
         home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0xFF3660DC),
+            elevation: 0,
+            title: Text('Manually Select'),
+          ),
           body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -105,27 +87,40 @@ class _manualState extends State<manual> {
               ),
               itemBuilder: (BuildContext context, int index) {
                 return Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      functions[index](context); // Call the appropriate function for the button
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white, // set button background color
-                        shape: BoxShape.circle, // make button circular
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          functions[index](context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey),
+                          ),
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                            emojis[index],
+                            style: TextStyle(fontSize: 60),
+                          ),
+                        ),
                       ),
-                      padding: EdgeInsets.all(20), // increase button size
-                      child: Text(
-                        emojis[index],
-                        style: TextStyle(fontSize: 60),
+                      SizedBox(height: 10),
+                      Text(
+                        emotion[index],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 );
               },
             ),
           ),
-        )
-    );
+        ));
   }
 }

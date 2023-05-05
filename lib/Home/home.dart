@@ -1,16 +1,21 @@
-import 'package:Moodify/Home/detect.dart';
-import 'package:Moodify/homepage.dart';
+import 'package:Moodify/Home/maindetect.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'manual.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(Home());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const Home());
+}
 
 class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Home',
       home: HomeScreen(),
     );
@@ -24,12 +29,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
-  late User loggedInUser;
+  User? loggedInUser;
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     Image.asset("images/emotion.jpg"),
-    detect(),
-    manual(),
+    MainDetect(),
   ];
 
   @override
@@ -43,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final user = await _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser.displayName);
+        print(loggedInUser!.displayName);
       }
     } catch (e) {
       print(e);
@@ -62,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xFF3660DC),
         elevation: 0,
-        title: Text('Welcome ${loggedInUser.displayName ?? "Guest"}!'),
+        title: Text('Welcome ${loggedInUser!.displayName ?? "Guest"}!'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -84,12 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_a_photo),
-            label: 'Detect',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.emoji_emotions_outlined),
-            label: 'Manual',
+            label: 'Emotions',
           ),
         ],
         currentIndex: _selectedIndex,

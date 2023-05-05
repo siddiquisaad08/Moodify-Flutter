@@ -10,6 +10,7 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Moodify',
         theme: ThemeData(
           primaryColor: const Color(0xFF210055),
